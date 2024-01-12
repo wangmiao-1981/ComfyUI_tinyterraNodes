@@ -16,6 +16,7 @@ ttN_version = '1.2.0'
 MAX_RESOLUTION=8192
 
 import os
+import gc
 import re
 import json
 import time
