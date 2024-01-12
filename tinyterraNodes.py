@@ -3228,6 +3228,26 @@ class ttN_gcLatentTunnel:
 	def __init__(self):
 		pass
 
+	@classmethod
+	def INPUT_TYPES(s):
+		return {
+			"required": {
+				"samples": ("LATENT",),
+				}
+			}
+
+	RETURN_TYPES = ("LATENT",)
+	RETURN_NAMES = ("pipe",)
+	FUNCTION = "gcLatent"
+
+	CATEGORY = "ttN/utils"
+
+    def gcLatent(self, samples):
+        s = samples.copy()
+        gc.collect()
+        torch.cuda.empty_cache()
+        torch.cuda.ipc_collect()
+        return (s,)
 
 # ---------------------------------------------------------------ttN/image END-----------------------------------------------------------------------#
 
@@ -3297,7 +3317,7 @@ NODE_CLASS_MAPPINGS = {
 	"ttN float": ttN_FLOAT,
 	"ttN seed": ttN_SEED,
 
-	# ttn/wells扩展节点
+	# wells扩展节点
 	"ttN gcLatentTunnel": ttN_gcLatentTunnel
 	}
 
@@ -3337,7 +3357,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 	"ttN float": "float",
 	"ttN seed": "seed",
 
-	# ttn/wells扩展节点
+	# wells扩展节点
 	"ttN gcLatentTunnel": "gcLatentTunnel"
 	}
 
