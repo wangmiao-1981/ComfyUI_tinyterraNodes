@@ -3232,7 +3232,7 @@ class ttN_gcLatentTunnel:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "samples": ("LATENT",),
+                "latent": ("LATENT",),
                 }
             }
 
@@ -3242,8 +3242,8 @@ class ttN_gcLatentTunnel:
 
     CATEGORY = "ttN/wells"
 
-    def gclatent(self, samples):
-        s = samples.copy()
+    def gclatent(self, latent):
+        s = latent.copy()
         gc.collect()
         torch.cuda.empty_cache()
         torch.cuda.ipc_collect()
