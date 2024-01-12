@@ -3237,17 +3237,18 @@ class ttN_gcLatentTunnel:
 			}
 
 	RETURN_TYPES = ("LATENT",)
-	RETURN_NAMES = ("pipe",)
-	FUNCTION = "gcLatent"
+	RETURN_NAMES = ("LATENT",)
+	FUNCTION = "gclatent"
 
 	CATEGORY = "ttN/utils"
 
-    def gcLatent(self, samples):
-        s = samples.copy()
-        gc.collect()
-        torch.cuda.empty_cache()
-        torch.cuda.ipc_collect()
-        return (s,)
+	def gclatent(self, samples):
+		s = samples.copy()
+		gc.collect()
+		torch.cuda.empty_cache()
+		torch.cuda.ipc_collect()
+		return s
+
 
 # ---------------------------------------------------------------ttN/image END-----------------------------------------------------------------------#
 
